@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>- Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            color: #333;
+            padding: 2rem;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: scale(0.95);
+            animation: fadeIn 1.2s ease forwards;
+            position: relative;
+            z-index: 1;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff8a80;
+            opacity: 0;
+            animation: fallDown 5s ease-in-out infinite;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .ribbon::before {
+            content: "Happy Birthday!";
+            position: absolute;
+            display: block;
+            width: 230px;
+            padding: 15px 0;
+            background-color: #ff4081;
+            box-shadow: 0 5px 10px rgba(0,0,0,.1);
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            transform: rotate(45deg);
+            right: -45px;
+            top: 45px;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            color: #e91e63;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: glowText 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowText {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e91e63, 0 0 20px #e91e63;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e91e63, 0 0 40px #e91e63;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #777;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            color: #e91e63;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 1rem;
+            padding-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            transform: rotate(var(--rotation));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            animation: fadeInPhoto 0.8s ease forwards;
+            opacity: 0;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+            transform: translateY(-100%) rotate(45deg);
+            transition: transform 0.6s;
+        }
+
+        .polaroid:hover::before {
+            transform: translateY(100%) rotate(45deg);
+        }
+
+        .polaroid:nth-child(odd) {
+            --rotation: -3deg;
+        }
+
+        .polaroid:nth-child(even) {
+            --rotation: 3deg;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0) translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(233, 30, 99, 0.3);
+            z-index: 2;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+            transition: filter 0.3s;
+            border: 1px solid #f5f5f5;
+        }
+
+        .polaroid:hover img {
+            filter: brightness(1.1);
+        }
+
+        .polaroid .caption {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            font-size: 1.3rem;
+            color: #e91e63;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .polaroid .date {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        /* Heart Decoration */
+        .heart-decoration {
+            position: absolute;
+            color: rgba(233, 30, 99, 0.1);
+            font-size: 8rem;
+            z-index: 0;
+        }
+
+        .heart-1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(-20deg);
+        }
+
+        .heart-2 {
+            bottom: 15%;
+            right: 8%;
+            transform: rotate(15deg);
+            font-size: 6rem;
+        }
+
+        /* Video Play Button */
+       
+
+      
+
+        
+        .play-text {
+            font-family: 'Dancing Script', cursive;
+            margin-top: 1.5rem;
+            font-size: 1.8rem;
+            color: #e91e63;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Video Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 85%;
+            max-width: 900px;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-button {
+            position: absolute;
+            top: -50px;
+            right: -10px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 101;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .close-button:hover {
+            color: #ff4081;
+            transform: scale(1.2);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Floating Hearts */
+        .hearts-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0;
+            font-size: 30px;
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+            animation: floatUp 10s ease-in infinite;
+        }
+
+        /* Message Section */
+        .message-section {
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+            padding: 3rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(233, 30, 99, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .message-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #e91e63;
+            margin-bottom: 1.5rem;
+        }
+
+        .message-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #e91e63;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInPhoto {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) rotate(var(--rotation));
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(var(--rotation));
+            }
+        }
+
+        @keyframes heartbeat {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                bottom: -50px;
+                transform: translateX(0) rotate(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateX(var(--translateX)) rotate(var(--rotate));
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                bottom: 110%;
+                opacity: 0;
+                transform: translateX(calc(var(--translateX) * 2)) rotate(calc(var(--rotate) * 2));
+            }
+        }
+
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(720deg);
+                opacity: 0.3;
+            }
+        }
+
+        .gift-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff4081, #f50057);
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.6);
+        }
+
+        .gift-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.6s;
+        }
+
+        .gift-button:hover::before {
+            left: 100%;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+
+            .ribbon {
+                top: -20px;
+                right: -20px;
+                width: 120px;
+                height: 120px;
+            }
+            
+            .ribbon::before {
+                width: 200px;
+                padding: 10px 0;
+                font-size: 14px;
+                right: -45px;
+                top: 35px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .polaroid img {
+                height: 170px;
+            }
+            
+            
+            .message-section {
+                padding: 2rem 1rem;
+            }
+
+            .message-title {
+                font-size: 2rem;
+            }
+
+            .message-content {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+            
+            .polaroid {
+                padding: 0.75rem;
+                padding-bottom: 1.5rem;
+            }
+            
+            .polaroid img {
+                height: 130px;
+            }
+            
+            .polaroid .caption {
+                font-size: 1.1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            
+
+            .play-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti-container" id="confettiContainer"></div>
+    
+    <div class="container">
+        <div class="ribbon"></div>
+        <header>
+            <h1>Happy Birthday! manviiiiii</h1>
+            <p class="subtitle">Celebrating the most wonderful person in my life...</p>
+            <div class="countdown" id="countdown"></div>
+        </header>
+
+        <div class="gallery">
+            <div class="polaroid" style="--delay: 0.1s;">
+                <img src="./1.jpg" alt="Our First Date">
+                <!-- <div class="caption">Our first photo</div>
+                <div class="date">January 15</div> -->
+            </div>
+            <div class="polaroid" style="--delay: 0.2s;">
+                <img src="./2.jpg" alt="Beach Day">
+                <!-- <div class="caption">That perfect day at the beach</div> -->
+                <!-- <div class="date">March 3</div> -->
+            </div>
+            <div class="polaroid" style="--delay: 0.3s;">
+                <img src="./3.jpg" alt="Hiking Adventure">
+                <!-- <div class="caption">Mountain hiking adventure</div> -->
+                <!-- <div class="date">April 22</div> -->
+            </div>
+            <div class="polaroid" style="--delay: 0.4s;">
+                <img src="./4.jpg" alt="Movie Night">
+                <!-- <div class="caption">Movie night under the stars</div> -->
+                <!-- <div class="date">May 17</div> -->
+            </div>
+            <div class="polaroid" style="--delay: 0.5s;">
+                <img src="./5.jpg" alt="Birthday">
+                <!-- <div class="caption">Your last birthday surprise</div> -->
+                <!-- <div class="date">June 10</div> -->
+            </div>
+            <div class="polaroid" style="--delay: 0.6s;">
+                <img src="./8.jpg" alt="Dinner Date">
+                <!-- <div class="caption">Candlelit dinner downtown</div> -->
+                <!-- <div class="date">July 5</div> -->
+            </div>
+            <div class="polaroid" style="--delay: 0.7s;">
+                <img src="./7.jpg" alt="Concert">
+                <!-- <div class="caption">Dancing at your favorite concert</div> -->
+                <!-- <div class="date">August 28</div> -->
+            </div>
+            <div class="polaroid" style="--delay: 0.8s;">
+                <img src="./9.jpg" alt="Road Trip">
+                <!-- <div class="caption">Our spontaneous road trip</div> -->
+                <!-- <div class="date">September 12</div> -->
+            </div>
+        </div>
+
+        <div class="message-section">
+            <h2 class="message-title">A Special Message For You</h2>
+            <p class="message-content">
+                To the most amazing person I know, on your special day. Every moment spent with you is a blessing, every smile we share a treasure. You light up my world in ways I never thought possible. May this day be as beautiful as your heart, as bright as your smile, and as special as you are to me. Here's to another year of creating memories together - our adventure has only just begun.
+            </p> 
+            <br>
+            <br>
+            <p class="message-content">Tu sirf ek naam nahi, meri zindagi ka wo hissa hai jisse main har roz hasi se jeeta hoon.
+Tere saath ki woh choti-choti baatein, woh lazmi flirting, woh masti—sab kuch ek kahaani ban gaya hai.
+Kya tu jaanti hai?
+Tere bina har joke adhoora lagta hai,
+Har fun moment mein tujhe tag karne ka mann karta hai.
+Tu mere har emoji ka reason hai, har smile ka sabab hai.
+
+Tu dost hai… lekin kabhi-kabhi tujhse kuch zyada lagta hai.
+Wo respect, wo care, wo har baar “oye” bolna… sab kuch khaas lagta hai.
+Tu hi wo ladki hai jisse main chhedta bhi hoon, lekin sabse zyada value bhi karta hoon.
+
+Tu special hai, Manvi.
+Aur is duniya ki har khushi tujh tak pahunchti rahe,
+Main hamesha teri life ka wo fun part banu—jo tujhe boring kabhi feel na hone de.
+
+ ❤️</div>
+            <button class="gift-button" id="surpriseButton"> <a href="cake.html" style="color: #f5f5f5;">Click For A Surprise!</a></button>
+        </div>
+
+        <div class="play-button-container">
+            <div class="play-button-wrapper">
+                <div class="play-button" id="playButton"></div>
+            </div>
+            <!-- <div class="play-text">Watch Our Special Moments</div> -->
+        </div>
+
+        <div class="heart-decoration heart-1">❤</div>
+        <div class="heart-decoration heart-2">❤</div>
+    </div>
+
+    <!-- <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeButton">×</button>
+            <video id="specialVideo" controls>
+                <source src="birthday_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div> -->
+
+    <!-- <div class="hearts-container" id="heartsContainer"></div> -->
+
+    <script>
+        // Wait for DOM to fully load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation delay for polaroid photos
+            const polaroids = document.querySelectorAll('.polaroid');        
+            polaroids.forEach((polaroid, index) => {
+                polaroid.style.animationDelay = `${index * 0.15}s`;
+            });
+
+            // Video modal functionality
+            const playButton = document.getElementById('playButton');
+            const videoModal = document.getElementById('videoModal');
+            const closeButton = document.getElementById('closeButton');
+            const video = document.getElementById('specialVideo');
+
+            playButton.addEventListener('click', function() {
+                videoModal.classList.add('active');
+                setTimeout(() => {
+                    video.play();
+                }, 500);
+            });
+
+            closeButton.addEventListener('click', function() {
+                videoModal.classList.remove('active');
+                video.pause();
+                video.currentTime = 0;
+            });
+
+            // Close modal when clicking outside the video
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+
+            // Surprise button
+            const surpriseButton = document.getElementById('surpriseButton');
+surpriseButton.addEventListener('click', function() {
+    
+    createConfettiBurst();
+    setTimeout(() => {
+        window.location.href = 'cake.html'; // Replace 'next_page.html' with the actual URL of the next page
+    }, 2000); // Adjust the delay as needed
+});
+ 
+            // Floating hearts animation
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heartSymbols = [];
+            
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                
+                // Random position and animation
+                const startPosition = Math.random() * 100;
+                const translateX = Math.random() * 150 - 75; // Random movement left or right
+                const rotate = Math.random() * 60 - 30; // Random rotation
+                heart.style.left = `${startPosition}%`;
+                heart.style.setProperty('--translateX', `${translateX}px`);
+                heart.style.setProperty('--rotate', `${rotate}deg`);
+                heart.style.animationDuration = `${8 + Math.random() * 7}s`; // Random duration
+                heart.style.color = `hsl(${340 + Math.random() * 40}, 90%, 65%)`;
+                heart.style.fontSize = `${20 + Math.random() * 30}px`;
+                
+                heartsContainer.appendChild(heart);
+                
+                // Remove heart after animation completes
+                setTimeout(() => {
+                    heart.remove();
+                }, 15000);
+            }
+            
+            // Create hearts at random intervals
+            setInterval(createHeart, 600);
+            
+            // Create initial hearts
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 300);
+            }
+
+            // Confetti animation
+            const confettiContainer = document.getElementById('confettiContainer');
+            const confettiColors = [
+                '#ff4081', '#f50057', '#ff80ab', '#f8bbd0', 
+                '#ec407a', '#ad1457', '#d81b60', '#c2185b'
+            ];
+
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.opacity = Math.random() * 0.8 + 0.2;
+                
+                // Random animation duration and delay
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 5}s`;
+                
+                confettiContainer.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 8000);
+            }
+
+            function createConfettiBurst() {
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        createConfetti();
+                    }, i * 20);
+                }
+            }
+
+            // Create initial confetti
+            createConfettiBurst();
+            
+            // Create confetti periodically
+            setInterval(() => {
+                for (let i = 0; i < 5; i++) {
+                    createConfetti();
+                }
+            }, 2000);
+            
+            // Countdown functionality
+            const countdownEl = document.getElementById('countdown');
+            const birthday = new Date(); // Set today as birthday for demo
+            birthday.setHours(23, 59, 59); // End of the day
+            
+            function updateCountdown() {
+                const now = new Date();
+                const diff = birthday - now;
+                
+                if (diff <= 0) {
+                    countdownEl.innerHTML = "🎉 It's your birthday! 🎉";
+                    return;
+                }
+                
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                countdownEl.innerHTML = `Celebrating in: ${hours}h ${minutes}m ${seconds}s`;
+            }
+            
+            // Update countdown every second
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Optional background music
+            // Uncomment the following to add background music
+            /*
+            const bgMusic = new Audio('romantic_music.mp3');
+            bgMusic.loop = true;
+            bgMusic.volume = 0.3;
+            
+            // Play music when user interacts with the page
+            document.body.addEventListener('click', function() {
+                bgMusic.play();
+            }, { once: true });
+            */
+        });
+    </script>
+</body>
+</html>

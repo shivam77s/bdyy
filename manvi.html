@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Manvi 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(to bottom right, #ffd6e0, #c1e1f1);
+      overflow-x: hidden;
+    }
+    header, .cake-section, .gallery, .games, .final-message {
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5em;
+      color: #ff4081;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .btn-start {
+      background: #ff4081;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-start:hover {
+      background: #f50057;
+    }
+    .cake-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+    .candles {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .candle {
+      width: 40px;
+      height: 100px;
+      background: #fff;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+    .flame {
+      width: 20px;
+      height: 30px;
+      background: radial-gradient(ellipse at center, yellow 0%, orange 70%, red 100%);
+      border-radius: 50%;
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.5s infinite;
+    }
+    @keyframes flicker {
+      0% {transform: translateX(-50%) scale(1);}
+      50% {transform: translateX(-50%) scale(1.1);}
+      100% {transform: translateX(-50%) scale(1);}
+    }
+    .shayari {
+      font-size: 1.5em;
+      color: #444;
+      font-style: italic;
+      margin-top: 20px;
+    }
+    .gallery img, video {
+      max-width: 100%;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    .games h3 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      color: #e91e63;
+    }
+    .box-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .box {
+      padding: 20px;
+      background: #ffe4ec;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .box:hover {
+      background: #ffb3c6;
+    }
+    .spinner {
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 50%;
+      background: #ff69b4;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100px;
+    }
+    .final-message {
+      font-size: 1.3em;
+      color: #333;
+      margin-top: 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>This day is special… because *tu* aayi zindagi mein</h1>
+    <button class="btn-start" onclick="startCake()">Let's Go</button>
+  </header>
+
+  <div class="cake-section" id="cake">
+    <div class="candles">
+      <div class="candle" onclick="blow(this)"><div class="flame"></div></div>
+      <div class="candle" onclick="blow(this)"><div class="flame"></div></div>
+      <div class="candle" onclick="blow(this)"><div class="flame"></div></div>
+      <div class="candle" onclick="blow(this)"><div class="flame"></div></div>
+    </div>
+    <h2 id="wish" style="display:none; color: #ff4081; font-family: 'Great Vibes', cursive; font-size: 2em;">🎉 Happy Birthday Manvi 🎉</h2>
+    <p class="shayari">“Tu mile zindagi mein, toh har pal roshan hai,<br>Tere muskurane se hi meri duniya mein jashn hai.”</p>
+  </div>
+
+  <div class="gallery">
+    <h2>Your Beautiful Moments</h2>
+    <img src="photo1.jpg" />
+    <img src="photo2.jpg" />
+    <img src="photo3.jpg" />
+    <img src="photo4.jpg" />
+    <img src="photo5.jpg" />
+    <img src="photo6.jpg" />
+    <img src="photo7.jpg" />
+    <img src="photo8.jpg" />
+    <video controls src="video.mp4" width="320"></video>
+  </div>
+
+  <div class="games">
+    <h2>Game 1: Find Your Kiss 💋</h2>
+    <div class="box-grid">
+      <div class="box" onclick="alert('Oops! Tum meri heartbeat ho.')">💌</div>
+      <div class="box" onclick="alert('Try Again BBG!')">🎁</div>
+      <div class="box" onclick="alert('You got it! 💋')">💋</div>
+      <div class="box" onclick="alert('Wapas dhoondo cutee!')">🍫</div>
+      <div class="box" onclick="alert('Missed it, BBG!')">🌹</div>
+      <div class="box" onclick="alert('Dil pe lagi... par kiss nahi!')">😝</div>
+    </div>
+
+    <h2>Game 2: Flirty Spinner</h2>
+    <div class="spinner" onclick="alert(spinText[Math.floor(Math.random()*spinText.length)])">Spin Me 💞</div>
+
+    <h2>Game 3: BBG Balloon Pop 🎈</h2>
+    <div class="box-grid">
+      <div class="box" onclick="alert('POP! Tumhari smile... deadly hai!')">🎈</div>
+      <div class="box" onclick="alert('POP! Tumhare bina sab suna suna hai')">🎈</div>
+      <div class="box" onclick="alert('POP! Tera naam bhi cute lagta hai!')">🎈</div>
+    </div>
+  </div>
+
+  <div class="final-message">
+    <p>Manvi, duniya kitni bhi pyari ho,<br>Tu jaisi BBG kahin nahi!<br>Happy Birthday and thank you for being YOU!<br><strong>~ From: Tu jaane na ❤️</strong></p>
+  </div>
+
+  <script>
+    function startCake() {
+      document.querySelector('#cake').style.display = 'flex';
+      window.scrollTo({ top: document.querySelector('#cake').offsetTop, behavior: 'smooth' });
+    }
+    function blow(elem) {
+      elem.innerHTML = '';
+      const flames = document.querySelectorAll('.flame');
+      if ([...flames].every(f => f.parentElement.innerHTML === '')) {
+        document.querySelector('#wish').style.display = 'block';
+      }
+    }
+    const spinText = [
+      "Tumhare bina chai bhi feeki hai",
+      "Tu dikhe to sab kuch ruk jata hai",
+      "Mujhse zyada cute koi ho sakta hai kya?",
+      "BBG tu smile mat diya kar, dil dhak dhak karta hai!",
+      "Tera naam bhi filter se pyara hai"
+    ];
+  </script>
+</body>
+
+</html>

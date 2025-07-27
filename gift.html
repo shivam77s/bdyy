@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Birthday Gift For You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;500;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ffd6e7, #ffeaf4, #ffccda, #ffd1ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+        }
+        
+        h1 {
+            color: #ff1493;
+            margin-bottom: 40px;
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            text-shadow: 0 3px 10px rgba(255, 20, 147, 0.3);
+            position: relative;
+        }
+        
+        h1::after {
+            content: "❤️";
+            position: absolute;
+            top: -15px;
+            right: 50px;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        h1::before {
+            content: "🎂";
+            position: absolute;
+            top: -10px;
+            left: 50px;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .card-container {
+            position: relative;
+            margin: 0 auto 30px;
+            max-width: 500px;
+        }
+        
+        .heart-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: radial-gradient(ellipse at center, rgba(255, 105, 180, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: -1;
+            animation: pulse 2s infinite;
+            filter: blur(10px);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+        
+        .scratch-card-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            height: 350px;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transform: scale(0.95);
+            animation: fadeIn 1s 0.5s forwards;
+            background-color: #fff;
+            border: 3px solid #ff69b4;
+        }
+        
+        #scratchCard {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border-radius: 15px;
+            z-index: 5;
+        }
+        
+        .hidden-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            background: linear-gradient(45deg, #ffe6f2, #fff9fb);
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .decorative-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.6;
+        }
+        
+        .decorative-corner.top-left {
+            top: 5px;
+            left: 5px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff69b4" d="M0,0 C30,10 10,30 0,100 L0,0 Z"/></svg>');
+            background-size: contain;
+        }
+        
+        .decorative-corner.top-right {
+            top: 5px;
+            right: 5px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff69b4" d="M100,0 C70,10 90,30 100,100 L100,0 Z"/></svg>');
+            background-size: contain;
+        }
+        
+        .decorative-corner.bottom-left {
+            bottom: 5px;
+            left: 5px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff69b4" d="M0,100 C30,90 10,70 0,0 L0,100 Z"/></svg>');
+            background-size: contain;
+        }
+        
+        .decorative-corner.bottom-right {
+            bottom: 5px;
+            right: 5px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff69b4" d="M100,100 C70,90 90,70 100,0 L100,100 Z"/></svg>');
+            background-size: contain;
+        }
+        
+        .poem {
+            font-family: 'Dancing Script', cursive;
+            color: #333;
+            max-width: 90%;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 1s ease-out, opacity 1s ease-out;
+        }
+        
+        .poem.revealed {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .poem h2 {
+            color: #ff1493;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            text-shadow: 0 1px 3px rgba(255, 20, 147, 0.2);
+        }
+        
+        .poem p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .poem .signature {
+            font-size: 1.5rem;
+            color: #ff1493;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .instruction {
+            margin-top: 15px;
+            color: #ff1493;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .instruction::before, .instruction::after {
+            content: "✨";
+        }
+        
+        .love-note {
+            margin: 30px auto;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff1493;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+            text-shadow: 0 2px 5px rgba(255, 20, 147, 0.3);
+            position: relative;
+        }
+        
+        .love-note.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .love-note::before, .love-note::after {
+            content: "❤️";
+            font-size: 1.3rem;
+            position: relative;
+            top: -5px;
+            animation: beatHeart 1s infinite alternate;
+        }
+        
+        .love-note::before {
+            margin-right: 10px;
+        }
+        
+        .love-note::after {
+            margin-left: 10px;
+        }
+        
+        @keyframes beatHeart {
+            from { transform: scale(1); }
+            to { transform: scale(1.3); }
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .control-btn {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+        }
+        
+        .control-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .control-btn .icon {
+            font-size: 1.2rem;
+        }
+        
+        .roses {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .rose {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff1493" d="M50,0 C60,20 80,20 100,30 C80,40 80,60 100,80 C80,70 60,90 50,100 C40,90 20,70 0,80 C20,60 20,40 0,30 C20,20 40,20 50,0 Z"/></svg>');
+            background-size: contain;
+            opacity: 0;
+            transform: scale(0) rotate(0deg);
+            animation: bloomAndFade 4s ease-out forwards;
+        }
+        
+        @keyframes bloomAndFade {
+            0% { transform: scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1) rotate(360deg); opacity: 0.9; }
+            100% { transform: scale(1.2) rotate(720deg); opacity: 0; }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .balloons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 50px;
+            opacity: 0;
+            animation: floatUp 10s ease-out forwards;
+        }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+        }
+        
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+        
+        @keyframes confettiFall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .gift-icon {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0;
+            z-index: 3;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0) rotate(-30deg); opacity: 0; }
+            60% { transform: scale(1.2) rotate(10deg); }
+            80% { transform: scale(0.9) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 25px;
+            }
+            
+            h1::before {
+                left: 30px;
+            }
+            
+            h1::after {
+                right: 30px;
+            }
+            
+            .scratch-card-container {
+                height: 300px;
+            }
+            
+            .poem h2 {
+                font-size: 1.6rem;
+            }
+            
+            .poem p {
+                font-size: 1rem;
+            }
+            
+            .love-note {
+                font-size: 1.4rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h1::before, h1::after {
+                font-size: 1.5rem;
+            }
+            
+            .scratch-card-container {
+                height: 280px;
+            }
+            
+            .poem h2 {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+            
+            .poem p {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>This is your birthday gift</h1>
+        
+        <div class="card-container">
+            <div class="heart-glow"></div>
+            <div class="scratch-card-container">
+                <canvas id="scratchCard"></canvas>
+                <div id="hiddenContent" class="hidden-content">
+                    <div class="decorative-corner top-left"></div>
+                    <div class="decorative-corner top-right"></div>
+                    <div class="decorative-corner bottom-left"></div>
+                    <div class="decorative-corner bottom-right"></div>
+                    
+                    <div id="giftIcons"></div>
+                    
+                    <div id="poemContent" class="poem">
+                        <h2>To My Beloved</h2>
+                        <p>In every sunrise, I see your smile,<br>
+                        In every sunset, your gentle grace.<br>
+                        You are the rhythm to which my heart beats,<br>
+                        "Wo muskaan, jaise subah ki roshni ho,<br>
+Wo chehra, jaise khwabon ki kahani ho... <br>
+Khoobsurti bhi sharma jaaye jise dekh ke, <br>
+manvi waise ek nayi zindagani ho. <br>
+
+Janamdin mubarak ho, ek yaadgaar pal ke naam..." <br>
+
+
+                        <div class="signature">Happy Birthday, my dear besttttttt friend ❤️</div>
+                    </div>
+                </div>
+            </div>
+            <p class="instruction">Scratch to reveal your special birthday gift!</p>
+        </div>
+        
+        <div id="loveNote" class="love-note">
+            <p>You're the most beautiful part of my life. .</p>
+        </div>
+        
+        <div class="controls">
+            <button id="muteButton" class="control-btn">
+                <span class="icon"></span>
+            </button>
+            <button id="shareButton" class="control-btn" disabled>
+                <span class="icon"></span> 
+            </button>
+        </div>
+    </div>
+    
+    <div id="roses" class="roses"></div>
+    <div id="balloons" class="balloons"></div>
+    <div id="confettiContainer" class="confetti-container"></div>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://assets.codepen.io/123456/romantic-piano.mp3" type="audio/mpeg">
+        <!-- Note: You'll need to replace with an actual music file -->
+    </audio>
+    
+    <audio id="popSound">
+        <source src="https://assets.codepen.io/123456/pop.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            const scratchCard = document.getElementById('scratchCard');
+            const hiddenContent = document.getElementById('hiddenContent');
+            const poemContent = document.getElementById('poemContent');
+            const loveNote = document.getElementById('loveNote');
+            const muteButton = document.getElementById('muteButton');
+            const shareButton = document.getElementById('shareButton');
+            const bgMusic = document.getElementById('bgMusic');
+            const popSound = document.getElementById('popSound');
+            const rosesContainer = document.getElementById('roses');
+            const balloonsContainer = document.getElementById('balloons');
+            const confettiContainer = document.getElementById('confettiContainer');
+            const giftIcons = document.getElementById('giftIcons');
+            
+            // Setup canvas
+            const ctx = scratchCard.getContext('2d');
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            let scratchedPixels = 0;
+            let totalPixels = 0;
+            let isRevealed = false;
+            
+            // Create balloons
+            function createBalloons() {
+                const colors = ['#ff1493', '#ff69b4', '#ffb6c1', '#ffc0cb', '#ff77a9'];
+                
+                for (let i = 0; i < 12; i++) {
+                    const balloon = document.createElement('div');
+                    balloon.classList.add('balloon');
+                    
+                    // Random position and delay
+                    balloon.style.left = `${Math.random() * 100}%`;
+                    balloon.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    // Set balloon color and shape
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    balloon.innerHTML = `
+                        <svg viewBox="0 0 50 60" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25,10 C40,10 40,35 25,35 C10,35 10,10 25,10 Z" fill="${color}"/>
+                            <path d="M25,35 L25,50" stroke="#888" stroke-width="1.5" stroke-dasharray="2"/>
+                            <circle cx="25" cy="50" r="2" fill="#888"/>
+                        </svg>
+                    `;
+                    
+                    balloonsContainer.appendChild(balloon);
+                }
+            }
+            
+            // Create confetti
+            function createConfetti() {
+                const colors = ['#ff1493', '#ff69b4', '#ffb6c1', '#ffc0cb', '#ff77a9', '#ffccff', '#f0e6ff'];
+                
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.classList.add('confetti');
+                        
+                        // Random position, size, color and shape
+                        confetti.style.left = `${Math.random() * 100}%`;
+                        
+                        const size = Math.random() * 8 + 5;
+                        confetti.style.width = `${size}px`;
+                        confetti.style.height = `${size}px`;
+                        
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.backgroundColor = color;
+                        
+                        // Random shape
+                        const shapes = ['circle', 'square', 'triangle'];
+                        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                        
+                        if (shape === 'circle') {
+                            confetti.style.borderRadius = '50%';
+                        } else if (shape === 'triangle') {
+                            confetti.style.backgroundColor = 'transparent';
+                            confetti.style.width = '0';
+                            confetti.style.height = '0';
+                            confetti.style.borderLeft = `${size/2}px solid transparent`;
+                            confetti.style.borderRight = `${size/2}px solid transparent`;
+                            confetti.style.borderBottom = `${size}px solid ${color}`;
+                        }
+                        
+                        // Animation
+                        const duration = Math.random() * 3 + 2;
+                        confetti.style.animation = `confettiFall ${duration}s ease-in forwards`;
+                        
+                        confettiContainer.appendChild(confetti);
+                        
+                        // Remove after animation completes
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, duration * 1000);
+                    }, i * 50);
+                }
+            }
+            
+            // Create gift icons
+            function createGiftIcons() {
+                const icons = [];
+                const positions = [
+                    {top: '15%', left: '15%'},
+                    {top: '15%', left: '85%'},
+                    {top: '85%', left: '15%'},
+                    {top: '85%', left: '85%'},
+                    {top: '30%', left: '50%'},
+                    {top: '70%', left: '50%'},
+                    {top: '50%', left: '25%'},
+                    {top: '50%', left: '75%'}
+                ];
+                
+                for (let i = 0; i < icons.length; i++) {
+                    setTimeout(() => {
+                        const giftIcon = document.createElement('div');
+                        giftIcon.classList.add('gift-icon');
+                        giftIcon.textContent = icons[i];
+                        
+                        // Position
+                        giftIcon.style.top = positions[i].top;
+                        giftIcon.style.left = positions[i].left;
+                        
+                        // Animation
+                        giftIcon.style.animation = `popIn 0.6s ease-out forwards ${i * 0.15}s`;
+                        
+                        giftIcons.appendChild(giftIcon);
+                        
+                        // Play pop sound
+                        if (i % 2 === 0) {
+                            popSound.currentTime = 0;
+                            popSound.play().catch(e => console.log('Audio play failed:', e));
+                        }
+                    }, i * 150);
+                }
+            }
+            
+            // Resize canvas
+            function resizeCanvas() {
+                const container = scratchCard.parentElement;
+                scratchCard.width = container.offsetWidth;
+                scratchCard.height = container.offsetHeight;
+                
+                // Create gradient background
+                const gradient = ctx.createLinearGradient(0, 0, scratchCard.width, scratchCard.height);
+                gradient.addColorStop(0, '#ff77a9');
+                gradient.addColorStop(0.5, '#ff1493');
+                gradient.addColorStop(1, '#ff69b4');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, scratchCard.width, scratchCard.height);
+                
+                // Add decoration
+                drawBirthdayDecoration();
+                
+                // Add "Scratch here" text
+                ctx.font = 'bold 22px "Dancing Script", cursive';
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('Scratch here to reveal your gift', scratchCard.width / 2, scratchCard.height / 2);
+                ctx.font = 'bold 16px "Dancing Script", cursive';
+                ctx.fillText('❤️ Made with love ❤️', scratchCard.width / 2, scratchCard.height / 2 + 40);
+                
+                // Calculate total pixels
+                totalPixels = scratchCard.width * scratchCard.height;
+                scratchedPixels = 0;
+            }
+            
+            // Draw birthday decoration
+            function drawBirthdayDecoration() {
+                // Draw some balloons
+                drawBalloon(scratchCard.width * 0.2, scratchCard.height * 0.3, 20, '#ffffff');
+                drawBalloon(scratchCard.width * 0.8, scratchCard.height * 0.3, 20, '#ffffff');
+                
+                // Draw gift box
+                drawGiftBox(scratchCard.width / 2, scratchCard.height * 0.7, 40);
+                
+                // Draw some confetti
+                for (let i = 0; i < 20; i++) {
+                    const x = Math.random() * scratchCard.width;
+                    const y = Math.random() * scratchCard.height;
+                    const size = Math.random() * 5 + 3;
+                    
+                    ctx.fillStyle = 'white';
+                    
+                    // Random shapes for confetti
+                    const shape = Math.floor(Math.random() * 3);
+                    if (shape === 0) {
+                        // Circle
+                        ctx.beginPath();
+                        ctx.arc(x, y, size/2, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else if (shape === 1) {
+                        // Square
+                        ctx.fillRect(x, y, size, size);
+                    } else {
+                        // Triangle
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x + size/2, y + size);
+                        ctx.lineTo(x - size/2, y + size);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                }
+            }
+            
+            // Draw balloon
+            function drawBalloon(x, y, size, color) {
+                ctx.fillStyle = color;
+                
+                // Balloon
+                ctx.beginPath();
+                ctx.ellipse(x, y, size/2, size*0.7, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // String
+                ctx.beginPath();
+                ctx.moveTo(x, y + size*0.7);
+                ctx.bezierCurveTo(
+                    x + size/4, y + size*0.9,
+                    x - size/4, y + size*1.1,
+                    x, y + size*1.5
+                );
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+            
+            // Draw gift box
+            function drawGiftBox(x, y, size) {
+                // Box
+                ctx.fillStyle = 'white';
+                ctx.fillRect(x - size/2, y - size/2, size, size);
+                
+                // Ribbon
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(x - size/10, y - size/2, size/5, size);
+                ctx.fillRect(x - size/2, y - size/10, size, size/5);
+                // Draw bow
+ctx.beginPath();
+ctx.ellipse(x, y, size/4, size/8, 0, 0, Math.PI * 2);
+ctx.fill();
+
+// Draw smaller circle for bow center
+ctx.beginPath();
+ctx.arc(x, y, size/10, 0, Math.PI * 2);
+ctx.fillStyle = '#ffccff';
+ctx.fill();
+}
+
+// Scratch effect
+function scratch(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, 15, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Calculate scratched area
+    const imageData = ctx.getImageData(0, 0, scratchCard.width, scratchCard.height);
+    let transparent = 0;
+    
+    for (let i = 3; i < imageData.data.length; i += 4) {
+        if (imageData.data[i] < 50) transparent++;
+    }
+    
+    scratchedPixels = transparent;
+    
+    // Check if enough is scratched
+    const scratchedPercentage = scratchedPixels / totalPixels * 100;
+    if (scratchedPercentage > 50 && !isRevealed) {
+        revealContent();
+    }
+}
+
+// Reveal content
+function revealContent() {
+    isRevealed = true;
+    
+    // Completely clear the scratch card
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, scratchCard.width, scratchCard.height);
+    
+    // Hide scratch card with animation
+    scratchCard.style.opacity = '0';
+    setTimeout(() => {
+        scratchCard.style.display = 'none';
+    }, 500);
+    
+    // Show the poem
+    setTimeout(() => {
+        poemContent.classList.add('revealed');
+        
+        // Show love note
+        setTimeout(() => {
+            loveNote.classList.add('visible');
+            
+            // Enable share button
+            shareButton.disabled = false;
+            
+            // Create gift icons
+            createGiftIcons();
+            
+            // Create roses
+            createRoses();
+            
+            // Trigger confetti
+            createConfetti();
+        }, 1500);
+    }, 300);
+    
+    // Start playing music
+    try {
+        bgMusic.play().catch(e => console.log('Audio play failed:', e));
+    } catch (e) {
+        console.log('Audio play failed:', e);
+    }
+}
+
+// Create roses
+function createRoses() {
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            const rose = document.createElement('div');
+            rose.classList.add('rose');
+            
+            // Random position
+            rose.style.top = `${Math.random() * 100}%`;
+            rose.style.left = `${Math.random() * 100}%`;
+            
+            // Random size
+            const size = Math.random() * 0.5 + 0.8;
+            rose.style.transform = `scale(${size})`;
+            
+            rosesContainer.appendChild(rose);
+            
+            // Remove after animation
+            setTimeout(() => {
+                rose.remove();
+            }, 4000);
+        }, i * 300);
+    }
+}
+
+// Create sparkles
+function createSparkles() {
+    setInterval(() => {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        
+        // Random position
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.left = `${Math.random() * 100}%`;
+        
+        document.body.appendChild(sparkle);
+        
+        // Remove after animation
+        setTimeout(() => {
+            sparkle.remove();
+        }, 2000);
+    }, 200);
+}
+
+// Mouse events for scratching
+scratchCard.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+    scratch(lastX, lastY);
+});
+
+scratchCard.addEventListener('mousemove', (e) => {
+    if (!isDrawing) return;
+    
+    const x = e.offsetX;
+    const y = e.offsetY;
+    
+    // Draw a line between last position and current
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = 30;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    
+    // Also add circle for smoother effect
+    scratch(x, y);
+    
+    [lastX, lastY] = [x, y];
+});
+
+scratchCard.addEventListener('mouseup', () => isDrawing = false);
+scratchCard.addEventListener('mouseleave', () => isDrawing = false);
+
+// Touch events for mobile
+scratchCard.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    isDrawing = true;
+    const touch = e.touches[0];
+    const rect = scratchCard.getBoundingClientRect();
+    [lastX, lastY] = [touch.clientX - rect.left, touch.clientY - rect.top];
+    scratch(lastX, lastY);
+});
+
+scratchCard.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (!isDrawing) return;
+    
+    const touch = e.touches[0];
+    const rect = scratchCard.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    
+    // Draw a line between last position and current
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineWidth = 30;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    
+    // Also add circle for smoother effect
+    scratch(x, y);
+    
+    [lastX, lastY] = [x, y];
+});
+
+scratchCard.addEventListener('touchend', () => isDrawing = false);
+scratchCard.addEventListener('touchcancel', () => isDrawing = false);
+
+// Mute button functionality
+muteButton.addEventListener('click', () => {
+    if (bgMusic.paused) {
+        bgMusic.play().catch(e => console.log('Audio play failed:', e));
+        muteButton.innerHTML = '<span class="icon">🔊</span> Music';
+    } else {
+        bgMusic.pause();
+        muteButton.innerHTML = '<span class="icon">🔇</span> Music';
+    }
+});
+
+// Share button functionality
+shareButton.addEventListener('click', () => {
+    if (navigator.share) {
+        navigator.share({
+            title: 'A Special Birthday Gift',
+            text: 'Someone sent you a special birthday gift! Open to see your surprise.',
+            url: window.location.href
+        })
+        .then(() => console.log('Shared successfully'))
+        .catch(error => console.log('Error sharing:', error));
+    } else {
+        alert('Copy this page URL to share this gift with someone special!');
+    }
+});
+
+// Initialize
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+createBalloons();
+createSparkles();
+
+// Auto-reveal for testing
+if (window.location.hash === '#test') {
+    setTimeout(revealContent, 1000);
+}
+});
+</script>
+</body>
+</html>
